@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pzhu.shopping.myshop.mapper.GoodsMapper">
+    <select id="getGoodsTypeList" resultType="com.pzhu.shopping.myshop.pojo.goods.GoodsType">
+        SELECT * FROM tb_goods_type WHERE Parent=0
+    </select>
+
+    <select id="getGoodsByTypeId" resultType="com.pzhu.shopping.myshop.pojo.goods.Goods">
+        select * from tb_goods where typeid =#{typeId} order by id limit ${(pageNum-1)*pageSize},${pageSize}
+
+    </select>
+
+    <select id="getCount" parameterType="integer" resultType="long">
+        select count(*) from tb_goods where typeid =#{typeId}
+    </select>
+
+    <select id="getGoodsDetailById" resultType="com.pzhu.shopping.myshop.pojo.goods.Goods" parameterType="int">
+
+         select * from tb_goods where id = #{id}
+
+    </select>
+
+    <select id="getGoodsListByTypeId" resultType="com.pzhu.shopping.myshop.pojo.goods.GoodsType" parameterType="int">
+       select * from tb_goods_type where id=#{typeId}
+    </select>
+
+    <select id="findById" resultType="com.pzhu.shopping.myshop.pojo.goods.Goods" parameterType="int">
+      select * from tb_goods where id=#{id}
+    </select>
+
+    <select id="findByName" parameterType="string" resultType="com.pzhu.shopping.myshop.pojo.goods.Goods">
+        SELECT * FROM tb_goods WHERE name like "%"#{goodsname}"%" ORDER BY id
+
+    </select>
+
+    <insert id="addGoods" parameterType="com.pzhu.shopping.myshop.pojo.goods.Goods">
+        insert into tb_goods(`name`,pubdate,picture,price,star,intro,typeid) values (#{name},#{pubdate},#{picture},#{price},#{star},#{intro},#{typeid})
+    </insert>
+
+    <select id="findAllGoodsType" resultType="com.pzhu.shopping.myshop.pojo.goods.GoodsType">
+
+        select id,`name`,`level`,Parent from tb_goods_type
+    </select>
+
+    <select id="getParentNameByParentId" resultType="string" parameterType="integer">
+        select `name` from tb_goods_type where id=#{parent}
+    </select>
+
+    <select id="fingAllGoods" resultType="com.pzhu.shopping.myshop.pojo.goods.Goods">
+        select id,`name`,pubdate,picture,price,star,intro,typeid from tb_goods
+    </select>
+
+    <select id="findGoodsTypeName" resultType="string" parameterType="integer">
+        select `name` from tb_goods_type where id=#{typeid}
+    </select>
+
+    <insert id="addGoodsType" parameterType="com.pzhu.shopping.myshop.pojo.goods.GoodsType">
+        insert into tb_goods_type(`name`,`level`, Parent) values (#{name},#{level},#{parent})
+    </insert>
+
+    <select id="queryGoods" resultType="com.pzhu.shopping.myshop.pojo.goods.Goods">
+        select id,`name`,pubdate,picture,price,star,intro,typeid from tb_goods
+        <where>
+            <if test="name != null and name != ''">
+                and name LIKE CONCAT(CONCAT('%',#{name},'%'))
+            </if>
+
+            <if test="pubdate != null and pubdate != ''">
+            and pubdate LIKE CONCAT(CONCAT('%',#{pubdate},'%'))
+        </if>
+        </where>
+              ORDER BY id
+
+    </select>
+
+    <delete id="deleteGoodsById" parameterType="integer">
+        delete from tb_goods where id=#{goodsid}
+    </delete>
+
+    <select id="getGoodstyidByTypeName" parameterType="string" resultType="integer">
+        select id from tb_goods_type where `name`=#{typeName}
+    </select>
+
+    <update id="updateGoods">
+        update tb_goods set `name`=#{name},pubdate=#{pubdate},picture=#{picture},price=#{price},star=#{star},intro=#{intro},typeid=#{typeid} where id=#{id}
+    </update>
+    
+</mapper>

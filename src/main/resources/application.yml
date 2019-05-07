@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    url: jdbc:mysql:///db_shopping?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource #连接池的类型
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: foobared
+    jedis:
+      pool:
+        timeout: 120
+        max-active: 1024
+        max-idle: 100
+        min-idle: 10
+
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
+
+
+#注意如果你在mybatis 的xml文件中也配置了pagehelper,这里也配置了,会出现配置冲突的可能性,使用的时候会抛出异常,提示出现了两个pagehleper
+pagehelper:
+  helper-dialect: mysql #不同的数据库分页语句可能不一样,
+  params: count=countsql
+  reasonable: true
+  support-methods-arguments: true
+
+IMAGE_SERVER_URL: http://144.34.237.29:9999/
