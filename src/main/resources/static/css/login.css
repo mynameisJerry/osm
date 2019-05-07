@@ -4,7 +4,7 @@ a{text-decoration: none;color: #000;}
 img {border: 0; vertical-align:middle;} 
 ul li{list-style: none;}
 body,h1,h2,h3,h4,h5,h6{font: 12px 鐎瑰缍�,Times New Roman;}
-body{background: rgb(255,255,255)  }
+body{background: rgb(239,246,255)  }
 
 /*妫板嫬鐣炬稊澶嬬壉瀵拷*/
 .w{width: 1000px;margin: 0 auto;}
@@ -21,8 +21,8 @@ input:focus{border: 2px solid orange;}
 /*閻€劍鍩涢惂璇茬秿*/
 .top{width: 100%;height: 100px;background: #fff;}
 .top .logo{width: 1130px;height: 100px;}
-.form{width: 1920px;height:620px;background: url('../image/loginimage.jpg')no-repeat center center;background-size: 100%; }
-.login{width: 400px;height: 470px;/*border:1px solid #ff6700;*/margin:30px auto;background: #ffffff;color: #ff6700;margin-right: 500px;border-radius: 4px;}
+.form{width: 1920px;height:620px;background: url('../image/xiaomi9logo.jpg')no-repeat center center;background-size: 100%; }
+.login{width: 400px;height: 470px;/*border:1px solid #ff6700;*/margin:30px auto;background: #ffffff;color: #ff6700;margin-right: 330px;border-radius: 4px;}
 .login .login_center{width: 360px;margin: 10px auto;}
 .login .login_top{margin: 10px 0;}
 .login .login_top .left{height: 40px;line-height: 40px;font-weight: bold;font-size: 20px;}
